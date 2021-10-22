@@ -29,7 +29,8 @@
                                     <td>{{ nomina.name  }} {{ nomina.first_last_name  }} {{ nomina.second_last_name  }}</td>
                                     <td>{{ nomina.email }}</td>
                                     <td>{{ nomina.contract_type }}</td>
-                                    <td>{{ nomina.status }}</td>
+                                    <td v-if="nomina.status == 1">Activo</td>
+                                    <td v-if="nomina.status == 0">Inativo</td>
                                     <td>
                                         <router-link :to='{name:"nominaEdit",params:{id:nomina.id}}' class="btn btn-success">Detalle</router-link>
                                         <router-link :to='{name:"nominaEdit",params:{id:nomina.id}}' class="btn btn-success">Editar</router-link>

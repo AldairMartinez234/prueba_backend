@@ -36,7 +36,11 @@ class NominaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nominas = Nomina::create($request->post());
+        return response()->json([
+            'message'=>'Empleado agregado con exito',
+            'nominas'=>$nominas
+        ]);
     }
 
     /**
@@ -58,7 +62,7 @@ class NominaController extends Controller
      */
     public function edit(Nomina $nomina)
     {
-        //
+        return response()->json($nomina);
     }
 
     /**
@@ -70,7 +74,11 @@ class NominaController extends Controller
      */
     public function update(Request $request, Nomina $nomina)
     {
-        //
+        $nomina->fill($request->post())->save();
+        return response()->json([
+            'message'=>'Empleado actualizado',
+            'nominas'=>$nomina
+        ]);
     }
 
     /**

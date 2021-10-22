@@ -82,6 +82,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "nominas",
   data: function data() {
@@ -1034,7 +1035,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(nomina.contract_type))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(nomina.status))]),
+                        nomina.status == 1
+                          ? _c("td", [_vm._v("Activo")])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        nomina.status == 0
+                          ? _c("td", [_vm._v("Inativo")])
+                          : _vm._e(),
                         _vm._v(" "),
                         _c(
                           "td",
