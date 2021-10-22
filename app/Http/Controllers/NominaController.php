@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NominaRequest;
 use App\Models\Nomina;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,9 @@ class NominaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NominaRequest $request)
     {
-        $nominas = Nomina::create($request->post());
+        $nominas = Nomina::create($request->validated());
         return response()->json([
             'message'=>'Empleado agregado con exito',
             'nominas'=>$nominas
@@ -72,9 +73,9 @@ class NominaController extends Controller
      * @param  \App\Models\Nomina  $nomina
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nomina $nomina)
+    public function update(NominaRequest $request, Nomina $nomina)
     {
-        $nomina->fill($request->post())->save();
+        $nomina->fill($request->validated())->save();
         return response()->json([
             'message'=>'Empleado actualizado',
             'nominas'=>$nomina
@@ -89,6 +90,9 @@ class NominaController extends Controller
      */
     public function destroy(Nomina $nomina)
     {
-        //
+        $nomina->delete();
+        return response()->json([
+            'message'=>'Empleado eliminado'
+        ]);
     }
 }

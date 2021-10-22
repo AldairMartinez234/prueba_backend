@@ -22,6 +22,7 @@ class CreateNominasTable extends Migration
             $table->string("email");
             $table->string("contract_type");
             $table->string("status");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

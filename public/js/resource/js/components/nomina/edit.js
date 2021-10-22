@@ -126,6 +126,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "update-nominas",
   data: function data() {
@@ -139,7 +185,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         contract_type: "",
         status: "",
         _method: "patch"
-      }
+      },
+      errors: {}
     };
   },
   mounted: function mounted() {
@@ -190,8 +237,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.$router.push({
                     name: "nominaList"
                   });
+
+                  _this2.$swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Usuario actualizado exitosamente",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 })["catch"](function (error) {
-                  console.log(error);
+                  if (error.response.status == 422) {
+                    _this2.errors = error.response.data.errors;
+                  }
                 });
 
               case 2:
@@ -1376,7 +1433,17 @@ var render = function() {
                           _vm.$set(_vm.nominas, "code", $event.target.value)
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.code
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.code[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1404,7 +1471,17 @@ var render = function() {
                           _vm.$set(_vm.nominas, "name", $event.target.value)
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.name
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.name[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1436,7 +1513,17 @@ var render = function() {
                           )
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.second_last_name
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.second_last_name[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1468,7 +1555,17 @@ var render = function() {
                           )
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.first_last_name
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.first_last_name[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1496,7 +1593,17 @@ var render = function() {
                           _vm.$set(_vm.nominas, "email", $event.target.value)
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.email
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.email[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1529,7 +1636,17 @@ var render = function() {
                         }
                       }
                     })
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.errors.contract_type
+                    ? _c("span", { staticClass: "text-danger" }, [
+                        _vm._v(
+                          "\n                                -" +
+                            _vm._s(_vm.errors.contract_type[0]) +
+                            "\n                            "
+                        )
+                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-6 mb-2" }, [
@@ -1584,7 +1701,17 @@ var render = function() {
                           _vm._v("Inactivo")
                         ])
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _vm.errors.status
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.status[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1616,7 +1743,11 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Guardar cambios")]
+        [
+          _vm._v(
+            "\n                                Guardar cambios\n                            "
+          )
+        ]
       )
     ])
   }

@@ -83,6 +83,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "nominas",
   data: function data() {
@@ -103,7 +131,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get('/api/nominas').then(function (response) {
+                return _this.axios.get("/api/nominas").then(function (response) {
                   _this.nominas = response.data;
                 })["catch"](function (error) {
                   console.log(error);
@@ -118,16 +146,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    deletenomina: function deletenomina(id) {
+    deletenomina: function deletenomina(id, name, second_last_name, first_last_name) {
       var _this2 = this;
 
-      if (confirm("Are you sure to delete this nomina ?")) {
-        this.axios["delete"]("/api/nominas/".concat(id)).then(function (response) {
-          _this2.getnominas();
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
+      this.$swal.fire({
+        title: "¿Estas seguro  que quiere eliminar al empleado " + name + ' ' + first_last_name + ' ' + second_last_name + "?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Eliminar"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this2.$swal.fire("Eliminado", "El empleado fue eliminado con exito", "success");
+
+          _this2.axios["delete"]("/api/nominas/" + id).then(function (response) {
+            _this2.getnominas();
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
     }
   }
 });
@@ -1023,11 +1063,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            _vm._s(nomina.name) +
-                              " " +
+                            "\n                                    " +
+                              _vm._s(nomina.name) +
+                              "\n                                    " +
                               _vm._s(nomina.first_last_name) +
-                              " " +
-                              _vm._s(nomina.second_last_name)
+                              "\n                                    " +
+                              _vm._s(nomina.second_last_name) +
+                              "\n                                "
                           )
                         ]),
                         _vm._v(" "),
@@ -1081,11 +1123,20 @@ var render = function() {
                                 attrs: { type: "button" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.deletenomina(nomina.id)
+                                    return _vm.deletenomina(
+                                      nomina.id,
+                                      nomina.name,
+                                      nomina.second_last_name,
+                                      nomina.first_last_name
+                                    )
                                   }
                                 }
                               },
-                              [_vm._v("Eliminar")]
+                              [
+                                _vm._v(
+                                  "\n                                        Eliminar\n                                    "
+                                )
+                              ]
                             )
                           ],
                           1
@@ -1139,7 +1190,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("tr", [
       _c("td", { attrs: { colspan: "7", align: "center" } }, [
-        _vm._v("No hay empleados registrados.")
+        _vm._v(
+          "\n                                    No hay empleados registrados.\n                                "
+        )
       ])
     ])
   }

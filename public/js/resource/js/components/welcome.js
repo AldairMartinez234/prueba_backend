@@ -77,18 +77,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container mt-5" }, [
       _c("div", { staticClass: "col-12 text-center" }, [
-        _c("h1", [_vm._v("TechvBlogs")]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "https://techvblogs.com?utm_source=blogExampleRepo",
-              target: "_blank"
-            }
-          },
-          [_vm._v("Visit For More Blogs")]
-        )
+        _c("h1", [_vm._v("Bienvenidos")])
       ])
     ])
   }

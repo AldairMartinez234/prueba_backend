@@ -1,7 +1,9 @@
 <template>
     <div class="row">
         <div class="col-12 mb-2 text-end">
-            <router-link :to='{name:"nominaAdd"}' class="btn btn-primary">Crear nuevo empleado</router-link>
+            <router-link :to="{ name: 'nominaAdd' }" class="btn btn-primary"
+                >Crear nuevo empleado</router-link
+            >
         </div>
         <div class="col-12">
             <div class="card">
@@ -23,24 +25,50 @@
                                 </tr>
                             </thead>
                             <tbody v-if="nominas.length > 0">
-                                <tr v-for="(nomina,key) in nominas" :key="key">
+                                <tr v-for="(nomina, key) in nominas" :key="key">
                                     <td>{{ nomina.id }}</td>
                                     <td>{{ nomina.code }}</td>
-                                    <td>{{ nomina.name  }} {{ nomina.first_last_name  }} {{ nomina.second_last_name  }}</td>
+                                    <td>
+                                        {{ nomina.name }}
+                                        {{ nomina.first_last_name }}
+                                        {{ nomina.second_last_name }}
+                                    </td>
                                     <td>{{ nomina.email }}</td>
                                     <td>{{ nomina.contract_type }}</td>
                                     <td v-if="nomina.status == 1">Activo</td>
                                     <td v-if="nomina.status == 0">Inativo</td>
                                     <td>
-                                        <router-link :to='{name:"nominaShow",params:{id:nomina.id}}' class="btn btn-primary">Detalle</router-link>
-                                        <router-link :to='{name:"nominaEdit",params:{id:nomina.id}}' class="btn btn-success">Editar</router-link>
-                                        <button type="button" @click="deletenomina(nomina.id)" class="btn btn-danger">Eliminar</button>
+                                        <router-link
+                                            :to="{
+                                                name: 'nominaShow',
+                                                params: { id: nomina.id }
+                                            }"
+                                            class="btn btn-primary"
+                                            >Detalle</router-link
+                                        >
+                                        <router-link
+                                            :to="{
+                                                name: 'nominaEdit',
+                                                params: { id: nomina.id }
+                                            }"
+                                            class="btn btn-success"
+                                            >Editar</router-link
+                                        >
+                                        <button
+                                            type="button"
+                                            @click="deletenomina(nomina.id,nomina.name,nomina.second_last_name,nomina.first_last_name)"
+                                            class="btn btn-danger"
+                                        >
+                                            Eliminar
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
                             <tbody v-else>
                                 <tr>
-                                    <td colspan="7" align="center">No hay empleados registrados.</td>
+                                    <td colspan="7" align="center">
+                                        No hay empleados registrados.
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -53,33 +81,59 @@
 
 <script>
 export default {
-    name:"nominas",
-    data(){
+    name: "nominas",
+    data() {
         return {
-            nominas:[]
-        }
+            nominas: []
+        };
     },
-    mounted(){
-        this.getnominas()
+    mounted() {
+        this.getnominas();
     },
-    methods:{
-        async getnominas(){
-            await this.axios.get('/api/nominas').then(response=>{
-                this.nominas = response.data
-            }).catch(error=>{
-                console.log(error)
-                this.nominas = []
-            })
-        },
-        deletenomina(id){
-            if(confirm("Are you sure to delete this nomina ?")){
-                this.axios.delete(`/api/nominas/${id}`).then(response=>{
-                    this.getnominas()
-                }).catch(error=>{
-                    console.log(error)
+    methods: {
+        async getnominas() {
+            await this.axios
+                .get("/api/nominas")
+                .then(response => {
+                    this.nominas = response.data;
                 })
-            }
+                .catch(error => {
+                    console.log(error);
+                    this.nominas = [];
+                });
+        },
+        deletenomina(id,name,second_last_name,first_last_name) {
+            this.$swal
+                .fire({
+                    title:
+                        "¿Estas seguro  que quiere eliminar al empleado " +
+                        name + ' ' + first_last_name + ' ' +second_last_name + "?",
+                    text: "¡No podrás revertir esto!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Eliminar"
+                })
+                .then(result => {
+                    if (result.isConfirmed) {
+                        this.$swal.fire(
+                            "Eliminado",
+                            "El empleado fue eliminado con exito",
+                            "success"
+                        );
+
+                        this.axios
+                            .delete("/api/nominas/" + id)
+                            .then(response => {
+                                this.getnominas();
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
+                    }
+                });
         }
     }
-}
+};
 </script>

@@ -128,6 +128,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "add-nomina",
   data: function data() {
@@ -140,7 +185,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         email: "",
         contract_type: "",
         status: ""
-      }
+      },
+      errors: {}
     };
   },
   methods: {
@@ -157,8 +203,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.$router.push({
                     name: "nominaList"
                   });
+
+                  _this.$swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Usuario agregado exitosamente",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 })["catch"](function (error) {
-                  console.log(error);
+                  if (error.response.status == 422) {
+                    _this.errors = error.response.data.errors;
+                  }
                 });
 
               case 2:
@@ -1057,7 +1113,7 @@ var render = function() {
                           expression: "nomina.code"
                         }
                       ],
-                      staticClass: "form-control",
+                      staticClass: "form-control ",
                       attrs: { type: "text" },
                       domProps: { value: _vm.nomina.code },
                       on: {
@@ -1068,7 +1124,17 @@ var render = function() {
                           _vm.$set(_vm.nomina, "code", $event.target.value)
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.code
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.code[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1096,7 +1162,17 @@ var render = function() {
                           _vm.$set(_vm.nomina, "name", $event.target.value)
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.name
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.name[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1128,7 +1204,17 @@ var render = function() {
                           )
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.second_last_name
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.second_last_name[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1160,7 +1246,17 @@ var render = function() {
                           )
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.first_last_name
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.first_last_name[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1188,7 +1284,17 @@ var render = function() {
                           _vm.$set(_vm.nomina, "email", $event.target.value)
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.email
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.email[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1220,7 +1326,17 @@ var render = function() {
                           )
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.contract_type
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.contract_type[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -1276,7 +1392,17 @@ var render = function() {
                           _vm._v("Inactivo")
                         ])
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _vm.errors.status
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n                                    -" +
+                              _vm._s(_vm.errors.status[0]) +
+                              "\n                                "
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
