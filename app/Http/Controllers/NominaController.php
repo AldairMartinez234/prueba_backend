@@ -75,11 +75,26 @@ class NominaController extends Controller
      */
     public function update(NominaRequest $request, Nomina $nomina)
     {
-        $nomina->fill($request->validated())->save();
+        $nomina->update($request->validated());
         return response()->json([
             'message'=>'Empleado actualizado',
             'nominas'=>$nomina
         ]);
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Nomina  $nomina
+     * @return \Illuminate\Http\Response
+     */
+    public function updateStatus($id,$status)
+    {
+        $nomina = Nomina::findOrFail($id);
+        $status = $status == 1 ? 0 : 1;
+        $nomina->update(['status'=>$status]);
     }
 
     /**

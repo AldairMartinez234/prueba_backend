@@ -111,6 +111,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "nominas",
   data: function data() {
@@ -163,6 +179,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
           _this2.axios["delete"]("/api/nominas/" + id).then(function (response) {
             _this2.getnominas();
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    statusnomina: function statusnomina(id, status, name, second_last_name, first_last_name) {
+      var _this3 = this;
+
+      this.$swal.fire({
+        title: "¿Desea cambiar el estatus del empelado " + name + ' ' + first_last_name + ' ' + second_last_name + "?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Cambiar"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this3.$swal.fire("Estatus actualizado", "", "success");
+
+          _this3.axios.put("/api/nominas/status/" + id + '/' + status) //cambiar estatus
+          .then(function (response) {
+            _this3.getnominas();
           })["catch"](function (error) {
             console.log(error);
           });
@@ -1137,7 +1176,59 @@ var render = function() {
                                   "\n                                        Eliminar\n                                    "
                                 )
                               ]
-                            )
+                            ),
+                            _vm._v(" "),
+                            nomina.status == 0
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.statusnomina(
+                                          nomina.id,
+                                          nomina.status,
+                                          nomina.name,
+                                          nomina.second_last_name,
+                                          nomina.first_last_name
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Activar\n                                    "
+                                    )
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            nomina.status == 1
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-warning",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.statusnomina(
+                                          nomina.id,
+                                          nomina.status,
+                                          nomina.name,
+                                          nomina.second_last_name,
+                                          nomina.first_last_name
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Desactivar\n                                    "
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
                           ],
                           1
                         )

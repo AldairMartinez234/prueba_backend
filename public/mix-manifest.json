@@ -4,5 +4,6 @@
     "/js/resource/js/components/nomina/list.js": "/js/resource/js/components/nomina/list.js",
     "/js/resource/js/components/nomina/add.js": "/js/resource/js/components/nomina/add.js",
     "/js/resource/js/components/nomina/edit.js": "/js/resource/js/components/nomina/edit.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/resource/js/components/nomina/show.js": "/js/resource/js/components/nomina/show.js"
 }

@@ -2196,7 +2196,7 @@ var nominaEdit = function nominaEdit() {
 };
 
 var nominaShow = function nominaShow() {
-  return __webpack_require__.e(/*! import() | resource/js/components/nomina/edit */ "resource/js/components/nomina/edit").then(__webpack_require__.bind(__webpack_require__, /*! ./components/nomina/Show.vue */ "./resources/js/components/nomina/Show.vue"));
+  return __webpack_require__.e(/*! import() | resource/js/components/nomina/show */ "resource/js/components/nomina/show").then(__webpack_require__.bind(__webpack_require__, /*! ./components/nomina/Show.vue */ "./resources/js/components/nomina/Show.vue"));
 };
 
 var routes = [{
@@ -37719,7 +37719,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resource/js/components/welcome":1,"resource/js/components/nomina/list":1,"resource/js/components/nomina/add":1,"resource/js/components/nomina/edit":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resource/js/components/welcome":1,"resource/js/components/nomina/list":1,"resource/js/components/nomina/add":1,"resource/js/components/nomina/edit":1,"resource/js/components/nomina/show":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

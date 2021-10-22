@@ -61,6 +61,22 @@
                                         >
                                             Eliminar
                                         </button>
+                                         <button
+                                            v-if="nomina.status == 0"
+                                            type="button"
+                                            @click="statusnomina(nomina.id,nomina.status,nomina.name,nomina.second_last_name,nomina.first_last_name)"
+                                            class="btn btn-success"
+                                        >
+                                            Activar
+                                        </button>
+                                         <button
+                                            v-if="nomina.status == 1"
+                                            type="button"
+                                            @click="statusnomina(nomina.id,nomina.status,nomina.name,nomina.second_last_name,nomina.first_last_name)"
+                                            class="btn btn-warning"
+                                        >
+                                            Desactivar
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -125,6 +141,38 @@ export default {
 
                         this.axios
                             .delete("/api/nominas/" + id)
+                            .then(response => {
+                                this.getnominas();
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
+                    }
+                });
+        },
+
+        statusnomina(id,status,name,second_last_name,first_last_name) {
+            this.$swal
+                .fire({
+                    title:
+                        "¿Desea cambiar el estatus del empelado " +
+                        name + ' ' + first_last_name + ' ' +second_last_name + "?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Cambiar"
+                })
+                .then(result => {
+                    if (result.isConfirmed) {
+                        this.$swal.fire(
+                            "Estatus actualizado",
+                            "",
+                            "success"
+                        );
+
+                        this.axios
+                            .put("/api/nominas/status/" + id + '/' + status) //cambiar estatus
                             .then(response => {
                                 this.getnominas();
                             })
