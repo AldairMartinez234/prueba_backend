@@ -1049,10 +1049,10 @@ var render = function() {
                             _c(
                               "router-link",
                               {
-                                staticClass: "btn btn-success",
+                                staticClass: "btn btn-primary",
                                 attrs: {
                                   to: {
-                                    name: "nominaEdit",
+                                    name: "nominaShow",
                                     params: { id: nomina.id }
                                   }
                                 }

@@ -51,7 +51,7 @@ class NominaController extends Controller
      */
     public function show(Nomina $nomina)
     {
-        //
+        return response()->json($nomina);
     }
 
     /**
@@ -62,7 +62,7 @@ class NominaController extends Controller
      */
     public function edit(Nomina $nomina)
     {
-        return response()->json($nomina);
+
     }
 
     /**

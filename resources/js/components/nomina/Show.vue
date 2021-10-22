@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Actualizar información del empleado</h4>
+                    <h4>Detalles</h4>
                 </div>
                 <div class="card-body">
                     <form @submit.prevent="update">
@@ -15,6 +15,7 @@
                                         type="text"
                                         class="form-control"
                                         v-model="nominas.code"
+                                        disabled
                                     />
                                 </div>
                             </div>
@@ -25,6 +26,7 @@
                                         type="text"
                                         class="form-control"
                                         v-model="nominas.name"
+                                         disabled
                                     />
                                 </div>
                             </div>
@@ -35,6 +37,7 @@
                                         type="text"
                                         class="form-control"
                                         v-model="nominas.second_last_name"
+                                         disabled
                                     />
                                 </div>
                             </div>
@@ -45,6 +48,7 @@
                                         type="text"
                                         class="form-control"
                                         v-model="nominas.first_last_name"
+                                         disabled
                                     />
                                 </div>
                             </div>
@@ -55,6 +59,7 @@
                                         type="text"
                                         class="form-control"
                                         v-model="nominas.email"
+                                         disabled
                                     />
                                 </div>
                             </div>
@@ -65,6 +70,7 @@
                                         type="text"
                                         class="form-control"
                                         v-model="nominas.contract_type"
+                                         disabled
                                     />
                                 </div>
                             </div>
@@ -75,6 +81,7 @@
                                         class="form-select"
                                         aria-label="Default select example"
                                          v-model="nominas.status"
+                                          disabled
                                     >
                                         <option value='' selected disabled>Estatus</option>
                                         <option value="1">Activo</option>
@@ -84,7 +91,7 @@
                             </div>
                             <div class="col-6">
                                 <br>
-                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                <button type="submit" class="btn btn-primary">Regresar</button>
                             </div>
                         </div>
                     </form>

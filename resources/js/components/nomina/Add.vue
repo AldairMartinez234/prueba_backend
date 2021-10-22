@@ -1,6 +1,6 @@
 <template>
-    <div class="row col text-center">
-        <div class="col-6 ">
+    <div class="row">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h4>Registar nuevo empleado</h4>

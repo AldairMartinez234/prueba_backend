@@ -2186,6 +2186,10 @@ var nominaEdit = function nominaEdit() {
   return __webpack_require__.e(/*! import() | resource/js/components/nomina/edit */ "resource/js/components/nomina/edit").then(__webpack_require__.bind(__webpack_require__, /*! ./components/nomina/Edit.vue */ "./resources/js/components/nomina/Edit.vue"));
 };
 
+var nominaShow = function nominaShow() {
+  return __webpack_require__.e(/*! import() | resource/js/components/nomina/edit */ "resource/js/components/nomina/edit").then(__webpack_require__.bind(__webpack_require__, /*! ./components/nomina/Show.vue */ "./resources/js/components/nomina/Show.vue"));
+};
+
 var routes = [{
   name: 'home',
   path: '/',
@@ -2198,6 +2202,10 @@ var routes = [{
   name: 'nominaEdit',
   path: '/nomina/:id/edit',
   component: nominaEdit
+}, {
+  name: 'nominaShow',
+  path: '/nomina/:id/show',
+  component: nominaShow
 }, {
   name: 'nominaAdd',
   path: '/nomina/add',

@@ -32,7 +32,7 @@
                                     <td v-if="nomina.status == 1">Activo</td>
                                     <td v-if="nomina.status == 0">Inativo</td>
                                     <td>
-                                        <router-link :to='{name:"nominaEdit",params:{id:nomina.id}}' class="btn btn-success">Detalle</router-link>
+                                        <router-link :to='{name:"nominaShow",params:{id:nomina.id}}' class="btn btn-primary">Detalle</router-link>
                                         <router-link :to='{name:"nominaEdit",params:{id:nomina.id}}' class="btn btn-success">Editar</router-link>
                                         <button type="button" @click="deletenomina(nomina.id)" class="btn btn-danger">Eliminar</button>
                                     </td>
