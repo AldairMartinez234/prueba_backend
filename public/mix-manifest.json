@@ -1,0 +1,8 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/resource/js/components/welcome.js": "/js/resource/js/components/welcome.js",
+    "/js/resource/js/components/nomina/list.js": "/js/resource/js/components/nomina/list.js",
+    "/js/resource/js/components/nomina/add.js": "/js/resource/js/components/nomina/add.js",
+    "/js/resource/js/components/nomina/edit.js": "/js/resource/js/components/nomina/edit.js",
+    "/css/app.css": "/css/app.css"
+}
